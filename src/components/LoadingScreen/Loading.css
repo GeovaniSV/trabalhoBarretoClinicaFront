@@ -1,0 +1,9 @@
+.anima {
+	animation: anima 1s infinite;
+}
+
+@keyframes anima {
+	to {
+		transform: rotate(1turn);
+	}
+}
