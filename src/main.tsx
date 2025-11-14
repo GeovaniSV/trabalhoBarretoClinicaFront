@@ -13,12 +13,16 @@ import Register from "./pages/Register/index.tsx";
 
 import Layout from "./Layout.tsx";
 import PrivateRoutes from "./utils/PrivateRoutes.tsx";
+import Agendamentos from "./pages/Agendamentos/index.tsx";
 
 const router = createBrowserRouter([
   {
     element: <PrivateRoutes />,
     children: [
-      { element: <Layout />, children: [{ path: "/home", element: <Home /> }] },
+      { element: <Layout />, children: [
+        { path: "/home", element: <Home /> },
+        { path: "/agendamentos", element: <Agendamentos /> }
+      ] },
     ],
   },
   { path: "/", element: <Navigate to="/login" /> },

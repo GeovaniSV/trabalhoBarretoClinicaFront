@@ -97,7 +97,7 @@ const getAgendamentos = async () => {
         <div className="border border-gray-400 rounded-sm shadow-lg overflow-auto">
           <h1 className="text-center">Médicos</h1>
           {doctors.map((med) => (
-            <div className="border-t border-gray-400 p-2">
+            <div className="border-t border-gray-400 p-2" key={med.id}>
               <h1><strong>Nome: </strong>{med.nome} </h1>
               <p><strong>Especialidade: </strong>{med.especialidade}</p>
               <p><strong>Telefone: </strong>{med.telefone} </p>
@@ -108,7 +108,7 @@ const getAgendamentos = async () => {
          <div className="border border-gray-400 rounded-sm shadow-lg overflow-auto">
           <h1 className="text-center">Pacientes</h1>
           {pacientes.map((pac) => (
-            <div className="border-t border-gray-400 p-2">
+            <div className="border-t border-gray-400 p-2" key={pac.id}>
               <h1><strong>Nome: </strong>{pac.nome} </h1>
               <p><strong>Telefone: </strong>{pac.telefone} </p>
             </div>
@@ -118,7 +118,7 @@ const getAgendamentos = async () => {
         <div className="border border-gray-400 rounded-sm shadow-lg overflow-auto col-span-2">
           <h1 className="text-center">Consultas</h1>
           {agendamentos.map((agenda) => (
-            <div className="border-t border-gray-400 p-2">
+            <div className="border-t border-gray-400 p-2" key={agenda.id}>
               <h1><strong>Especialidade:</strong> {agenda.medico.especialidade} </h1>
               <p><strong>Medico: </strong>{agenda.medico.nome} </p>
               <p><strong>Paciente:</strong> {agenda.paciente.nome} </p>

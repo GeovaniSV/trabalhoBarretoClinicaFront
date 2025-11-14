@@ -10,15 +10,12 @@ import SideBarButton from '../SideBarButton'
 import {
 	HomeIcon,
 	RectangleStackIcon,
-	UserIcon,
 	ArrowLeftStartOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 
-interface sideBarProps {
-	sideBarStatus: boolean
-}
 
-function SideBar({ sideBarStatus }: sideBarProps) {
+
+function SideBar() {
 	const location = useLocation()
 	const [active, setAcitve] = useState({
 		home: false,
@@ -53,7 +50,7 @@ function SideBar({ sideBarStatus }: sideBarProps) {
 	}, [location.pathname])
 	return (
 		<main
-			className={`${sideBarStatus ? '' : 'max-lg:hidden'} animate h-screen max-md:mt-16 max-lg:mt-20 border-r max-lg:fixed z-30 border-gray-300 shadow-lg w-72 bg-white flex flex-col justify-between `}>
+			className={` animate h-screen max-md:mt-16 max-lg:mt-20 border-r max-lg:fixed z-30 border-gray-300 shadow-lg w-72 bg-white flex flex-col justify-between `}>
 			<div>
 				<Link
 					to={'/home'}
@@ -76,7 +73,7 @@ function SideBar({ sideBarStatus }: sideBarProps) {
 
 						<li>
 							<SideBarButton
-								to="/history"
+								to="/agendamentos"
 								ref={buttonRef}
 								title="AGENDAMENTO"
 								className={active.history ? 'bg-amber-200' : ''}>
