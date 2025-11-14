@@ -78,21 +78,12 @@ function SideBar({ sideBarStatus }: sideBarProps) {
 							<SideBarButton
 								to="/history"
 								ref={buttonRef}
-								title="HISTÓRICO"
+								title="AGENDAMENTO"
 								className={active.history ? 'bg-amber-200' : ''}>
 								<RectangleStackIcon className="size-8" />
 							</SideBarButton>
 						</li>
 
-						<li>
-							<SideBarButton
-								to="/profile"
-								ref={buttonRef}
-								title="PERFIL"
-								className={active.profile ? 'bg-amber-200' : ''}>
-								<UserIcon className="size-8" />
-							</SideBarButton>
-						</li>
 					</ul>
 				</div>
 			</div>

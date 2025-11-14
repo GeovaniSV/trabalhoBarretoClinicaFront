@@ -19,37 +19,64 @@ function Login() {
   const navigate = useNavigate();
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const notify = () =>
-    toast("Usuário não encontrado no sistema", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-    });
-
   const handleSubmit = async () => {
     try {
-      const { data } = await api.post("/login", {
+      const { data } = await api.post("/auth/login", {
         email: inputValues.email,
-        password: inputValues.password,
+        senha: inputValues.password,
       });
+
+      console.log(data);
       localStorage.setItem("token", data.token);
       navigate("/home");
     } catch (e) {
       console.log(e);
       if (e instanceof AxiosError) {
-        if (e.status === 404) {
-          notify();
+        const errorMap: Record<number, VoidFunction> = {
+          401: () =>
+            toast("Credenciais inválidas", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+            }),
 
-          return;
-        }
+          400: () => {
+            toast("Dados incorretos ou não preenchidos", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+            });
+          },
+
+          404: () => {
+            toast("Usuário não encontrado no sistema", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+            });
+          },
+        };
+
+        return errorMap[e.status!]();
       }
-      return alert("Senha ou email incorretos");
     }
   };
 
